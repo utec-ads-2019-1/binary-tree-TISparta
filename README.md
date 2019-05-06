@@ -1,4 +1,4 @@
-# Typetraits
+# Binary Search Tree
 
 ## Commands
 
