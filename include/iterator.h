@@ -14,7 +14,7 @@ public:
   Iterator () {}
   Iterator (iterator current): current(current) {}
   Iterator <T> operator = (iterator other) { return current = other.current; }
-  bool operator != (Iterator <T> other) { return &(this -> current) != &(other.current); }
+  bool operator != (Iterator <T> other) { return this -> current != other.current; }
   Iterator <T> operator ++ () { 
     current++;
     return *this;
