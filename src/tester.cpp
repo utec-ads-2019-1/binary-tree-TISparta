@@ -16,10 +16,10 @@ struct Test {
   void check (bool condition, const std::string& msg) {
     if (condition) {
       passed++;
-      std::cout << Color::green << Color::bold << "OK" << std::endl << Color::normal;
+//      std::cout << Color::green << Color::bold << "OK" << std::endl << Color::normal;
     } else {
       failed++;
-      std::cout << Color::red << Color::bold << "!OK" << std::endl << Color::normal;
+      std::cout << Color::red << Color::bold << "!OK: " << msg << ' ' << std::endl << Color::normal;
     }
   }
   void print (const std::string& msg) {
@@ -35,10 +35,13 @@ struct Test {
     std::cout << Color::normal;
   }
   void showResults () {
-    std::cout << Color::blue << Color::bold << Color::underline << "Results\n" << Color::normal;
-    std::cout << Color::blue << Color::bold << "Passed " << passed << std::endl << Color::normal;
-    std::cout << Color::blue << Color::bold << "Failed " << failed << std::endl << Color::normal;
-    print("TESTS FINISHED" );
+    if (failed == 0) {
+      std::cout << Color::green << Color::bold << "All tests passed\n" << Color::normal;
+    } else {
+      std::cout << Color::blue << Color::bold << Color::underline << "Results\n" << Color::normal;
+      std::cout << Color::green << Color::bold << "Passed " << passed << std::endl << Color::normal;
+      std::cout << Color::red << Color::bold << "Failed " << failed << std::endl << Color::normal;
+    }
   }
 } tester;
 
@@ -51,7 +54,9 @@ void Tester::execute () {
     unsigned int size = mocker.generateRandomInt(10);
     int* elements = mocker.generateRandomArray <int> (size);
     testBSTree <int> (mocker, std::vector <int> (elements, elements + size));
+    tester.showResults();
   }
+  tester.print("Tests finished");
 }
 
 template <typename T>

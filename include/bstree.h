@@ -124,12 +124,12 @@ public:
 
   Iterator <T> begin () {
     traverseInOrder();
-    return Iterator <T> (std::begin(inorder));
+    return Iterator <T> (std::begin(inorder), std::begin(inorder), std::end(inorder));
   }
 
   Iterator <T> end () {
     traverseInOrder();
-    return Iterator <T> (std::end(inorder));
+    return Iterator <T> (std::end(inorder), std::begin(inorder), std::end(inorder));
   }
 
   ~BSTree () {

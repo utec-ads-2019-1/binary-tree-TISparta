@@ -20,7 +20,7 @@ public:
   template <typename T>
   T* generateRandomArray (unsigned int size) {
     T* elements = new T[size];
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < int(size); i++) {
       if (std::is_same <T, int>::value) {
         elements[i] = generateRandomInt();
       } else if (std::is_same <T, char>::value) {
